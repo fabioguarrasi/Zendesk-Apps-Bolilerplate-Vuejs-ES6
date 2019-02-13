@@ -8,7 +8,7 @@ define([
   return {
     client: null,
 
-    init: function() {
+    init() {
       this.client = ZAFClient.init();
     },
 
@@ -17,7 +17,7 @@ define([
      * If no value has been passed, 80 will be set as default heigth.
      * @param {Int} newHeight
      */
-    resizeFrame: function(appHeight) {
+    resizeFrame(appHeight) {
       this.client.invoke('resize', {width: '100%', height: appHeight +'px'});
     }
   };

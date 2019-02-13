@@ -10,16 +10,16 @@ define([
   'use strict';
 
   return Vue.component('zd-app', {
-    template: template,
+    template,
     computed: {
-      helloWorld: function() {
+      helloWorld() {
         return this.$store.state['helloWorld'];
       }
     },
-    mounted: function() {
+    mounted() {
       zaf.resizeFrame(this.$el.scrollHeight);
     },
-    updated: function() {
+    updated() {
       zaf.resizeFrame(this.$el.scrollHeight);
     }
   });

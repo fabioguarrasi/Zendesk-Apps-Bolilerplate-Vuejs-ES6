@@ -29,16 +29,16 @@ require([
 
   window._ = underscore;
 
-  var vm = null;
+  let vm = null;
 
   zaf.init();
   zaf.client.on('app.registered', init);
 
-  function init(data) {
+  const init = (data) => {
     vm = new Vue({
       el: '#app',
-      store: store,
-      render: function(h) {
+      store,
+      render(h) {
         return h(App);
       }
     });
