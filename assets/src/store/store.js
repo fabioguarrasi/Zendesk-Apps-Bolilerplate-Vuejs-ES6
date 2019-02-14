@@ -1,17 +1,7 @@
-define([
-  'Vue',
-  'Vuex'
-], function(
-  Vue,
-  Vuex
-) {
-  'use strict';
+Vue.use(Vuex);
 
-  Vue.use(Vuex);
-
-  return new Vuex.Store({
-    state: {
-      helloWorld: 'Hello World!'
-    }
-  });
-})
+export default new Vuex.Store({
+  state: {
+    helloWorld: 'hello world',
+  },
+});
