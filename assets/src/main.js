@@ -2,16 +2,23 @@ import zdEvents from './libs/ZDEvents.js';
 import store from './store/store.js';
 import App from './components/App.js';
 
-let vm = null;
+const Main = {
 
-zdEvents['ON_APP_REGISTERED'](init);
+  vm: null,
 
-function init(data) {
-  vm = new Vue({
-    el: '#app',
-    store,
-    render(h) {
-      return h(App);
-    },
-  });
+  init() {
+    zdEvents['ON_APP_REGISTERED'](this.initVueApp);
+  },
+
+  initVueApp: (data) => {
+    new Vue({
+      el: '#app',
+      store,
+      render(h) {
+        return h(App);
+      },
+    });
+  }
 };
+
+export default Main.init();
