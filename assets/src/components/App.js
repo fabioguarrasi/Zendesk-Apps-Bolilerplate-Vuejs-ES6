@@ -1,12 +1,24 @@
+import InputField from './InputField.js';
 import zdClient from '../libs/ZDClient.js';
 
 const App = {
   template: `
-    <h1>{{helloWorld}}</h1>
+    <div>
+      <InputField v-for="inputField in inputFields" v-bind="inputField">
+      </InputField>
+    </div>
   `,
+  data() {
+    return {
+      fieldValue: '',
+    };
+  },
+  components: {
+    InputField,
+  },
   computed: {
     ...Vuex.mapState([
-      'helloWorld',
+      'inputFields',
     ]),
   },
   mounted() {
