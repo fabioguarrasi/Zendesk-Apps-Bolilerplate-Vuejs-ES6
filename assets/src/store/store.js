@@ -1,36 +1,12 @@
 Vue.use(Vuex);
+import state from './state.js';
+import getters from './getters.js';
+import modules from './modules.js';
+import actions from './actions.js';
 
 export default new Vuex.Store({
-  state: {
-    inputFields: [
-      {
-        id: 'input-field-name',
-        label: 'Name',
-        value: '',
-        type: 'text',
-        errorMessage: '',
-      },
-      {
-        id: 'input-field-surname',
-        label: 'Surname',
-        value: '',
-        type: 'text',
-        errorMessage: '',
-      },
-      {
-        id: 'input-field-email',
-        label: 'Email',
-        value: '',
-        type: 'text',
-        errorMessage: '',
-      },
-      {
-        id: 'input-field-phone',
-        label: 'Phone',
-        value: '',
-        type: 'text',
-        errorMessage: '',
-      },
-    ]
-  },
+  state,
+  getters,
+  modules,
+  actions,
 });

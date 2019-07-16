@@ -4,6 +4,7 @@ import zdClient from '../libs/ZDClient.js';
 const App = {
   template: `
     <div>
+      <h1>{{ $t('helloWorld') }}</h1>
       <InputField v-for="inputField in inputFields" v-bind="inputField">
       </InputField>
     </div>

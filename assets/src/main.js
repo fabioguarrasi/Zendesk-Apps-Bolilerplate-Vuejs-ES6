@@ -1,22 +1,21 @@
-import zdEvents from './libs/ZDEvents.js';
-import store from './store/store.js';
 import App from './components/App.js';
+import store from './store/store.js';
+import zdClient from './libs/ZDClient.js';
+import i18n from './i18n/index.js';
 
 const Main = {
-
-  vm: null,
-
   init() {
-    zdEvents['ON_APP_REGISTERED'](this.initVueApp);
+    zdClient.init();
+    zdClient.events['ON_APP_REGISTERED'](this.initVueApp);
   },
 
-  initVueApp: (data) => {
+  async initVueApp(data) {
+    Vue.use(i18n);
+
     new Vue({
       el: '#app',
       store,
-      render(h) {
-        return h(App);
-      },
+      render: (h) => h(App),
     });
   }
 };
