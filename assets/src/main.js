@@ -17,7 +17,7 @@ const Main = {
       store,
       render: (h) => h(App),
     });
-  }
+  },
 };
 
 export default Main.init();
