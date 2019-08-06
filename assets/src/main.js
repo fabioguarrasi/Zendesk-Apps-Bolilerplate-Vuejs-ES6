@@ -9,15 +9,14 @@ const Main = {
     zdClient.events['ON_APP_REGISTERED'](this.initVueApp);
   },
 
-  async initVueApp(data) {
+  initVueApp() {
     Vue.use(i18n);
-
     new Vue({
       el: '#app',
       store,
-      render: (h) => h(App),
+      render: h => h(App),
     });
-  }
+  },
 };
 
 export default Main.init();

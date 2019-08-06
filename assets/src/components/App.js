@@ -1,26 +1,19 @@
-import InputField from './InputField.js';
+const template = `
+<div>
+  <h1>{{ helloWorld }}</h1>
+</div>`;
+
 import zdClient from '../libs/ZDClient.js';
 
 const App = {
-  template: `
-    <div>
-      <h1>{{ $t('helloWorld') }}</h1>
-      <InputField v-for="inputField in inputFields" v-bind="inputField">
-      </InputField>
-    </div>
-  `,
+  template,
   data() {
     return {
       fieldValue: '',
     };
   },
-  components: {
-    InputField,
-  },
   computed: {
-    ...Vuex.mapState([
-      'inputFields',
-    ]),
+    ...Vuex.mapState(['helloWorld']),
   },
   mounted() {
     zdClient.resizeFrame(this.$el.scrollHeight);
