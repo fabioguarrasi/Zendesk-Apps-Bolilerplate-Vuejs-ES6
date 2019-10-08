@@ -1,46 +1,69 @@
-
-
-let CLIENT;
-let APP_SETTINGS = null;
+const client = ZAFClient.init();
 
 const ZDClient = {
-
   events: {
-    ON_APP_REGISTERED(cb) {
-      return CLIENT.on('app.registered', (data) => {
-        APP_SETTINGS = data.metadata.settings;
-        return cb(data);
+    appRegistered: function(initVueFun) {
+      return client.on("app.registered", async ({ context, metadata }) => {
+        const { currentUser } = await client.get("currentUser");
+        ZDClient.app = {
+          client,
+          context,
+          metadata,
+          settings: metadata.settings,
+          currentUser
+        };
+        return initVueFun();
       });
     },
+    appActivated: function() {
+      return client.on("app.activated", () => {
+        console.log("app is activated again");
+      });
+    }
+  },
+  invoke: {
+    notify: function(message, type = "error") {
+      return client.invoke("notify", message, type);
+    },
+    instancesCreate: function(appState) {
+      console.log(appState)
+      client
+        .invoke("instances.create", {
+          location: "modal",
+          url: `assets/modal.html#parent_guid=${client._instanceGuid}`,
+          size: {
+            width: "350px",
+            height: "300px"
+          }
+        })
+        .then(({ "instances.create": [instancesCreate] }) => {
+          const modalClient = client.instance(instancesCreate.instanceGuid);
+          ZDClient.app.modalClient = modalClient;
+          modalClient.on("modalReady", () => {
+            modalClient.trigger("drawData", appState);
+          });
+        });
+    }
+  },
+  getData: async function(getDataInfo, force = false) {
+    if (ZDClient.app[getDataInfo] && force) {
+      return ZDClient.app[getDataInfo];
+    } else {
+      try {
+        ZDClient.app[getDataInfo] = (await client.get(getDataInfo))[
+          getDataInfo
+        ];
+        return ZDClient.app[getDataInfo];
+      } catch (err) {
+        console.error(err);
+      }
+    }
   },
 
-  init() {
-    CLIENT = ZAFClient.init();
-  },
-
-  /**
-   * Set getters for privite objects
-   */
-  app: {
-    get settings() { return APP_SETTINGS; }
-  },
-
-  /**
-   * It returns true if the app is installed in the instance, false if
-   * it's running locally
-   */
-  isProduction() {
-    return !!this.app.settings['IS_PRODUCTION'];
-  },
-
-  /**
-   * It sets the frame height using on the passed value.
-   * If no value has been passed, 80 will be set as default heigth.
-   * @param {Int} newHeight
-   */
+  app: {},
   resizeFrame(appHeight) {
-    CLIENT.invoke('resize', {width: '100%', height: `${appHeight}px`});
-  },
+    client.invoke("resize", { width: "100%", height: `${appHeight}px` });
+  }
 };
 
 export default ZDClient;
