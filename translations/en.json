@@ -1,16 +1,9 @@
 {
   "app": {
-    "description": "Play the famous zen tunes in your help desk.",
-    "name": "Buddha Machine"
-  },
-  "loading": "Welcome to this Sample App",
-  "fetch": {
-    "done": "Good",
-    "fail": "failed to fetch information from the server"
-  },
-  "id": "ID",
-  "email": "Email",
-  "name": "Name",
-  "role": "Role",
-  "groups": "Groups"
+    "name": "Vue 360 Boilerplate",
+    "short_description": "short description for boilerplate",
+    "long_description": "Long Description for boilerplate",
+    "installation_instructions": "Configure settings and install...",
+    "title": "Vue 360 Boilerplate"
+  }
 }

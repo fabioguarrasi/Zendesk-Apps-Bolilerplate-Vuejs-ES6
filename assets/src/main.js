@@ -1,22 +1,21 @@
 import App from './components/App.js';
-import store from './store/store.js';
 import zdClient from './libs/ZDClient.js';
-import i18n from './i18n/index.js';
+import i18n from './i18n/i18n.js';
+import store from './store/store.js';
 
 const Main = {
-  init() {
-    zdClient.init();
-    zdClient.events['ON_APP_REGISTERED'](this.initVueApp);
+  async init() {
+    zdClient.events.appRegistered(await this.initVueApp);
   },
-
   initVueApp() {
-    Vue.use(i18n);
+    const { currentUser } = zdClient.app;
+    Vue.use(i18n, currentUser);
     new Vue({
       el: '#app',
       store,
-      render: h => h(App),
+      render: h => h(App)
     });
-  },
+  }
 };
 
 export default Main.init();

@@ -1,26 +1,36 @@
-const template = `
-<div>
-  <h1>{{ helloWorld }}</h1>
-</div>`;
-
-import zdClient from '../libs/ZDClient.js';
+import zdClient from './../libs/ZDClient.js';
+import appTemplate from './AppTemplate.js';
+import Child from './Child/Child.js';
 
 const App = {
-  template,
+  template: appTemplate,
+  components: {
+    Child
+  },
   data() {
     return {
-      fieldValue: '',
+      state: {}
     };
   },
-  computed: {
-    ...Vuex.mapState(['helloWorld']),
+  created() {
+    this.state.zdInstance = zdClient.app.client._instanceGuid;
+    this.initApp();
   },
-  mounted() {
+  computed: {
+    ...Vuex.mapState(['message_from_vuex_state']),
+    ...Vuex.mapState(['hardcoded_value'])
+  },
+  mouted() {
     zdClient.resizeFrame(this.$el.scrollHeight);
   },
   updated() {
     zdClient.resizeFrame(this.$el.scrollHeight);
   },
+  methods: {
+    async initApp() {
+      console.log('parent component created');
+    }
+  }
 };
 
 export default App;

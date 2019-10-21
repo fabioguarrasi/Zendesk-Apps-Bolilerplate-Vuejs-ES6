@@ -1,0 +1,20 @@
+html {
+  overflow-y: auto;
+}
+
+[v-cloak].loader {
+  display: block;
+}
+.loader {
+  height: 100%;
+}
+
+.loader img {
+  margin: 0;
+  position: relative;
+  top: 50%;
+  left: 40%;
+  width: 60px;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
