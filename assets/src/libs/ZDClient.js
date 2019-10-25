@@ -39,7 +39,8 @@ const ZDClient = {
    * @param {Int} newHeight
    */
   resizeFrame(appHeight) {
-    CLIENT.invoke('resize', {width: '100%', height: `${appHeight}px`});
+    const maxAppHeight=appHeight>500 ? 500 : appHeight;
+    CLIENT.invoke('resize', {width: '100%', height: `${maxAppHeight}px`});
   },
 };
 
