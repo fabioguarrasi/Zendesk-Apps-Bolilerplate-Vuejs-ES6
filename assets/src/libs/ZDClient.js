@@ -22,7 +22,8 @@ const ZDClient = {
    * Set getters for privite objects
    */
   app: {
-    get settings() { return APP_SETTINGS; }
+    get settings() { return APP_SETTINGS; },
+    get client() { return CLIENT; }
   },
 
   /**
@@ -39,7 +40,7 @@ const ZDClient = {
    * @param {Int} newHeight
    */
   resizeFrame(appHeight) {
-    const maxAppHeight=appHeight>500 ? 500 : appHeight;
+    const maxAppHeight = appHeight > 500 ? 500 : appHeight;
     CLIENT.invoke('resize', {width: '100%', height: `${maxAppHeight}px`});
   },
 };

@@ -1,5 +1,8 @@
 import dictionary from './dictionary.js';
 
+  /**
+   * It returns full object path translation value for accessing nested translation
+   */
 function getObjProperty(object, propertyName) {
   return propertyName.split('.').reduce((a, b) => a[b], object);
 }
