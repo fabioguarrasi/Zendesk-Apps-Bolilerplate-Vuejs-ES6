@@ -1,13 +1,13 @@
-import state from './state.js';
-import getters from './getters.js';
-import modules from './modules.js';
-import actions from './actions.js';
+import i18n from '../i18n/index.js';
 
 Vue.use(Vuex);
+Vue.use(i18n);
+
+window.nls = new Vue();
 
 export default new Vuex.Store({
-  state,
-  getters,
-  modules,
-  actions,
+  state: {},
+  getters: {},
+  modules: {},
+  actions: {},
 });
