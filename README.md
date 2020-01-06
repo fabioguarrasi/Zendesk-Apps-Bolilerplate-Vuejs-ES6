@@ -48,7 +48,7 @@ The code for an ajax request in produciton
 ENV should look like:
 
 ```javascript
-zdClient.request({
+ZDClient.request({
   url: 'url_request',
   headers: {
     authorization: 'Basic {{setting.your_secure_paramenter}}',
@@ -64,10 +64,10 @@ keep the following structure while you work on a local ENV and then switch it
 before realising the app:
 
 ```javascript
-zdClient.request({
+ZDClient.request({
   url: 'url_request',
   headers: {
-    authorization: `Basic ${zdClient.getSetting('your_secure_paramenter')}`,
+    authorization: `Basic ${ZDClient.getSetting('your_secure_paramenter')}`,
   },
   secure: false,
   ...
@@ -82,12 +82,12 @@ In `ZDClient.js` I've added a method called `isProduction()` which will return t
 for `IS_PRODUCTION` paramenter. Then your code will look like:
 
 ```javascript
-zdClient.request({
+ZDClient.request({
   url: 'url_request',
   headers: {
-    authorization: `Basic ${zdClient.isProduction() ? '{{setting.your_secure_paramenter}}' : zdClient.getSetting('your_secure_paramenter')}`,
+    authorization: `Basic ${ZDClient.isProduction() ? '{{setting.your_secure_paramenter}}' : ZDClient.getSetting('your_secure_paramenter')}`,
   },
-  secure: zdClient.isProduction(),
+  secure: ZDClient.isProduction(),
   ...
 })
 ```
@@ -144,11 +144,11 @@ require([
   App,
   store,
   Vue,
-  zdClient,
+  ZDClient,
 ) => {
 
-  zdClient.events['INIT']();
-  zdClient.events['APP_REGISTERED'](initVueApp);
+  ZDClient.events['INIT']();
+  ZDClient.events['APP_REGISTERED'](initVueApp);
 
   function initVueApp(data) {
     new Vue({

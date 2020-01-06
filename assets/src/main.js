@@ -1,12 +1,12 @@
 import App from './components/App.js';
 import store from './store/store.js';
-import zdClient from './libs/ZDClient.js';
+import ZDClient from './libs/ZDClient.js';
 import i18n from './i18n/index.js';
 
 const Main = {
   init() {
-    zdClient.init();
-    zdClient.events['ON_APP_REGISTERED'](this.initVueApp);
+    ZDClient.init();
+    ZDClient.events['ON_APP_REGISTERED'](this.initVueApp);
   },
 
   initVueApp() {
