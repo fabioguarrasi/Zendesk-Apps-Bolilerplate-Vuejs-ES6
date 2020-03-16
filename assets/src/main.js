@@ -13,7 +13,7 @@ const Main = {
     Vue.use(i18n);
     new Vue({
       el: '#app',
-      store,
+      data: store,
       render: h => h(App),
     });
   },
