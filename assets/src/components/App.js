@@ -2,13 +2,18 @@ const template = `
 <div>
   <h1>{{ i18n.helloWorld }}</h1>
   <p>{{ state.customText }}</p>
+  <zutton>{{ state.i18n.flip }}</zutton>
 </div>`;
 
 import ZDClient from '../services/ZDClient.js';
 import { state, getters } from '../store/store.js';
+import Zutton from './Button.js';
 
 const App = {
   template,
+  components: {
+    Zutton
+  },
   computed: {
     state: () => state,
     ...getters

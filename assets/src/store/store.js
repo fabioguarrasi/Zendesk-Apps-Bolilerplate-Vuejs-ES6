@@ -24,6 +24,8 @@ export const methods = {
     state.i18n = newDictionary;
   },
 
+  flipText() {
+    state.customText = state.customText.split('').reverse().join('');
   },
 };
 
