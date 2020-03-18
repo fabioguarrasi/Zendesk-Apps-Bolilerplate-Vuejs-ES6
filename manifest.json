@@ -17,6 +17,11 @@
       "name": "IS_PRODUCTION",
       "type": "hidden",
       "default": "true"
+    },
+    {
+      "name": "dcAppReference",
+      "type": "text",
+      "required": false
     }
   ],
   "version": "1.0",

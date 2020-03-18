@@ -1,3 +1,4 @@
 {
-  "IS_PRODUCTION": false
+  "IS_PRODUCTION": false,
+  "dcAppReference": "vue_"
 }
