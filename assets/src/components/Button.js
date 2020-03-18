@@ -1,7 +1,7 @@
 const template = `
   <button
     class="c-btn"
-    @click="flipText()">
+    @click="flipText">
     <slot></slot>
   </button>
 `;
