@@ -5,6 +5,10 @@ export const state = Vue.observable({
   customText: 'Custom Text'
 });
 
+export const getters = {
+  i18n: () => state.i18n
+};
+
 export const methods = {
   /**
    * LEGACY: do not delete
