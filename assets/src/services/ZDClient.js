@@ -56,16 +56,14 @@ const ZDClient = {
    */
   async getAppStringsFromDynamicContent(url, prevItems) {
     const currentLocale = await this.getCurrentLocale();
-    const stringsMapping = prevItems ? [...prevItems] : [];
+    const stringsMapping = prevItems || [];
     let response = null;
     try {
       response = await CLIENT.request(url || '/api/v2/dynamic_content/items.json');
     } catch(error) {
       return null;
     }
-    if(response.next_page){
-      this.getAppStringsFromDynamicContent(response.next_page, stringsMapping);
-    } else {
+    if(response.items.length > 0) {
       response.items.forEach(item => {
         if(item.name.indexOf(APP_SETTINGS.dcAppReference) === 0) {
           let string = item.variants.find(variant => variant.locale_id === currentLocale.id);
@@ -77,6 +75,10 @@ const ZDClient = {
           }
         }
       });
+    }
+    if(response.next_page){
+      this.getAppStringsFromDynamicContent(response.next_page, stringsMapping);
+    } else {
       return stringsMapping;
     }
   },
