@@ -1,14 +1,17 @@
 const template = `
 <div>
-  <h1>{{ $root.state.helloWorld }}</h1>
+  <h1>{{ i18n.helloWorld }}</h1>
+  <p>{{ state.customText }}</p>
 </div>`;
 
-import ZDClient from '../libs/ZDClient.js';
+import ZDClient from '../services/ZDClient.js';
+import { state, getters } from '../store/store.js';
 
 const App = {
   template,
-  created() {
-    this.$root.setNewHelloWorld('ciao mondo');
+  computed: {
+    state: () => state,
+    ...getters
   },
   mounted() {
     ZDClient.resizeFrame(this.$el.scrollHeight);
