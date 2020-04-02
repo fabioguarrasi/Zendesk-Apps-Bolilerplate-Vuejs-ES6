@@ -1,7 +1,6 @@
 const template = `
 <div>
   <h1>{{ i18n.helloWorld }}</h1>
-  <p>{{ state.customText }}</p>
 </div>`;
 
 import ZDClient from '../services/ZDClient.js';
