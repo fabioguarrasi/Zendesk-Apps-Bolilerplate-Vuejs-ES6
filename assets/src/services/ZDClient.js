@@ -26,7 +26,7 @@ const ZDClient = {
      * It returns true if the app is installed in the instance, false if
      * it's running locally
      */
-    get isProduction() { return !!this.app.settings['IS_PRODUCTION']; },
+    get isProduction() { return !!this.settings['IS_PRODUCTION']; },
   },
 
   /**
