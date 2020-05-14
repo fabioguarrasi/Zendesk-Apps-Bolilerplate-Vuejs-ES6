@@ -1,5 +1,3 @@
-
-
 let CLIENT;
 let APP_SETTINGS = null;
 
@@ -25,12 +23,16 @@ const ZDClient = {
     get settings() { return APP_SETTINGS; }
   },
 
-  /**
-   * It returns true if the app is installed in the instance, false if
-   * it's running locally
-   */
-  isProduction() {
-    return !!this.app.settings['IS_PRODUCTION'];
+  async getOrderInformation(formData) {
+    try {
+      const request = new XMLHttpRequest();
+      request.open('POST', this.app.settings.apiURL, false);
+      request.send(formData);
+      return JSON.parse(request.response);
+    } catch (error) {
+      console.error('getOrderInformation error', error);
+      return null;
+    }
   },
 
   /**
@@ -39,7 +41,7 @@ const ZDClient = {
    * @param {Int} newHeight
    */
   resizeFrame(appHeight) {
-    CLIENT.invoke('resize', {width: '100%', height: `${appHeight}px`});
+    CLIENT.invoke('resize', {width: '600px', height: `${appHeight}px`});
   },
 };
 

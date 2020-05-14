@@ -1,33 +1,36 @@
-import InputField from './InputField.js';
-import zdClient from '../libs/ZDClient.js';
+import Search from '../components/Search.js';
+import OrderInformation from '../components/OrderInformation.js';
+import NotFound from '../components/NotFound.js'
 
-const App = {
+export default {
   template: `
-    <div>
-      <h1>{{ $t('helloWorld') }}</h1>
-      <InputField v-for="inputField in inputFields" v-bind="inputField">
-      </InputField>
-    </div>
+    <component :is="selectedComponent"
+      @orderInformation="getOrderInformation"
+      :orderInformation="orderInformation"
+      @component="changeComponent">
+    </component>
   `,
+  components: {
+    Search,
+    OrderInformation
+  },
   data() {
     return {
-      fieldValue: '',
+      selectedComponent: Search,
+      orderInformation: null
     };
   },
-  components: {
-    InputField,
-  },
-  computed: {
-    ...Vuex.mapState([
-      'inputFields',
-    ]),
-  },
-  mounted() {
-    zdClient.resizeFrame(this.$el.scrollHeight);
-  },
-  updated() {
-    zdClient.resizeFrame(this.$el.scrollHeight);
-  },
+  methods: {
+    getOrderInformation(orderInformation) {
+      this.orderInformation = orderInformation;
+      if (!!this.orderInformation && this.orderInformation.responseitems[0].success === 'true') {
+        this.selectedComponent = OrderInformation;
+      } else {
+        this.selectedComponent = NotFound;
+      }
+    },
+    changeComponent(component) {
+      this.selectedComponent = component;
+    }
+  }
 };
-
-export default App;

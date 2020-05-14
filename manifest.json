@@ -1,5 +1,5 @@
 {
-  "name": "Zendesk Vuejs app",
+  "name": "Order Information App",
   "author": {
     "name": "Zendesk Professional Services",
     "email": "services@zendesk.com",
@@ -9,14 +9,14 @@
   "private": true,
   "location": {
     "support": {
-      "ticket_sidebar": "assets/iframe.html"
+      "top_bar": "assets/iframe.html"
     }
   },
   "parameters": [
     {
-      "name": "IS_PRODUCTION",
-      "type": "hidden",
-      "default": "true"
+      "name": "apiURL",
+      "type": "text",
+      "default": "https://www.kuaididao.com/philippines-ifd-web/cs/order/track.do"
     }
   ],
   "version": "1.0",

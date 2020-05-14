@@ -1,16 +1,11 @@
 {
   "app": {
-    "description": "Play the famous zen tunes in your help desk.",
-    "name": "Buddha Machine"
+    "description": "Retrieves the order information from J&T Express API",
+    "name": "Order Information App"
   },
-  "loading": "Welcome to this Sample App",
-  "fetch": {
-    "done": "Good",
-    "fail": "failed to fetch information from the server"
-  },
-  "id": "ID",
-  "email": "Email",
-  "name": "Name",
-  "role": "Role",
-  "groups": "Groups"
+  "parameters": {
+    "apiURL": {
+      "label": "API url"
+    }
+  }
 }
